@@ -29,6 +29,6 @@ public class BaseController implements Initializable {
     private LockingController lockingController;
 
     public void initialize(URL location, ResourceBundle resources) {
-        
+
     }
 }
