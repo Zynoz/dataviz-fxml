@@ -5,8 +5,10 @@ import dataviz.locking.LockingController;
 import dataviz.memory.MemoryController;
 import dataviz.process.ProcessController;
 import dataviz.transaction.TransactionController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +30,14 @@ public class BaseController implements Initializable {
     @FXML
     private LockingController lockingController;
 
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    private MenuItem close;
 
+    public void initialize(URL location, ResourceBundle resources) {
+        addListeners();
+    }
+
+    private void addListeners() {
+        close.setOnAction(e -> Platform.exit());
     }
 }
