@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="fxml-learning" target="1.5" />
+      <module name="fxml-learning" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

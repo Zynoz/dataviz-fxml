@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-
-
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TextArea?>
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.transaction.TransactionController" fx:id="transactionController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="transactionController" minHeight="0.0" minWidth="0.0"
+            prefHeight="444.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="dataviz.transaction.TransactionController">
    <children>
       <TabPane layoutY="-1.0" prefHeight="201.0" prefWidth="258.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -52,5 +47,7 @@
       <TextArea layoutY="209.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
       <TextArea layoutX="390.0" layoutY="203.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="205.0" />
       <TextArea layoutX="395.0" layoutY="211.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="0.0" />
+      <Button fx:id="button1" layoutX="31.0" layoutY="234.0" mnemonicParsing="false" text="Click Me"/>
+      <Label fx:id="counter" layoutX="100.0" layoutY="238.0" text="Counter"/>
    </children>
 </AnchorPane>

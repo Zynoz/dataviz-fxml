@@ -1,21 +1,28 @@
 package dataviz.transaction;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
-public class TransactionController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private TableView tableView;
-
-    @FXML
-    private TextArea user1TA;
+public class TransactionController implements Initializable {
 
     @FXML
-    private TextArea user2TA;
+    private Button button1;
 
     @FXML
-    private TextArea user3TA;
+    private Label counter;
 
+    private int count = 0;
+
+    public void initialize(URL location, ResourceBundle resources) {
+        addListeners();
+    }
+
+    private void addListeners() {
+        button1.setOnAction(e -> counter.setText(String.valueOf(++count)));
+    }
 }
