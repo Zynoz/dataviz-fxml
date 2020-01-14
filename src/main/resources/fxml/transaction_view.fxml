@@ -28,8 +28,8 @@
                      <children>
                         <TableView layoutX="-1.0" layoutY="-1.0" prefHeight="178.0" prefWidth="264.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="RID" />
-                              <TableColumn prefWidth="75.0" text="TID" />
+                              <TableColumn prefWidth="75.0" text="RID"/>
+                              <TableColumn prefWidth="75.0" text="TID"/>
                            </columns>
                         </TableView>
                      </children>
@@ -38,16 +38,20 @@
             </Tab>
          </tabs>
       </TabPane>
-      <TableView layoutX="285.0" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="315.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="285.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+      <TableView layoutX="285.0" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                 minWidth="-Infinity" prefHeight="165.0" prefWidth="315.0" AnchorPane.bottomAnchor="140.0"
+                 AnchorPane.leftAnchor="285.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C1"/>
+            <TableColumn prefWidth="75.0" text="C2"/>
          </columns>
       </TableView>
-      <TextArea layoutY="209.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
-      <TextArea layoutX="390.0" layoutY="203.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="205.0" />
-      <TextArea layoutX="395.0" layoutY="211.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="0.0" />
-      <Button fx:id="button1" layoutX="31.0" layoutY="234.0" mnemonicParsing="false" text="Click Me"/>
-      <Label fx:id="counter" layoutX="100.0" layoutY="238.0" text="Counter"/>
+      <TextArea layoutY="209.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1"
+                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0"/>
+      <TextArea layoutX="390.0" layoutY="203.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2"
+                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="205.0"/>
+      <TextArea layoutX="395.0" layoutY="211.0" prefHeight="130.0" prefWidth="200.0" promptText="Select"
+                text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="395.0"
+                AnchorPane.rightAnchor="0.0"/>
    </children>
 </AnchorPane>
