@@ -15,21 +15,9 @@ public class MemoryController {
     private TextArea user1, user2, user3;
 
     @FXML
-    private GridPane gridPane1, gridPane2;
-
-    @FXML
-    private ColumnConstraints colConstraint1, colConstraint2, colConstraint3, colConstraint4;
-
-    @FXML
-    private RowConstraints rowConstraint1, rowConstraint2, rowConstraint3, rowConstraint4;
-
-    @FXML
     private ScrollBar scrollBar1, scrollBar2;
 
     @FXML
     private Label labelSGA, labelHDD;
-
-    @FXML
-    private Insets insetLeft1, insetLeft2;
 
 }

@@ -11,13 +11,7 @@ import java.util.ResourceBundle;
 public class TransactionController implements Initializable {
 
     @FXML
-    private TabPane tabPane;
-
-    @FXML
     private Tab undoTab;
-
-    @FXML
-    private AnchorPane undoAnchorPane, redoAnchorPane;
 
     @FXML
     private TableView undoTableView, redoTableView, tableView;
