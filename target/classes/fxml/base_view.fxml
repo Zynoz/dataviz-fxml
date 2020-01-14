@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.base.BaseController" fx:id="baseController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Close" fx:id="close"/>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Reset" fx:id="reset"/>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+                <MenuItem mnemonicParsing="false" text="About" fx:id="about"/>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+           <Tab text="Transaction" fx:id="trans_tab">
+               <fx:include fx:id="transaction" source="transaction_view.fxml"/>
+           </Tab>
+           <Tab text="Memory" fx:id="mem_tab">
+               <fx:include fx:id="memory" source="memory_view.fxml"/>
+           </Tab>
+           <Tab text="Process" fx:id="pro_tab">
+               <fx:include fx:id="process" source="process_view.fxml"/>
+           </Tab>
+           <Tab text="Index" fx:id="ind_tab">
+               <fx:include fx:id="index" source="index_view.fxml"/>
+           </Tab>
+           <Tab text="locking" fx:id="loc_tab">
+               <fx:include fx:id="locking" source="locking_view.fxml"/>
+           </Tab>
+
+       </TabPane>
+   </center>
+</BorderPane>

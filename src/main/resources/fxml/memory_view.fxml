@@ -10,41 +10,41 @@
 <?import javafx.scene.control.TextArea?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.memory.MemoryController" fx:id="memoryController">
     <children>
-        <TextArea layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
-        <TextArea layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="220.0" />
-        <TextArea layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
-        <GridPane gridLinesVisible="true" layoutX="4.0" layoutY="39.0" prefHeight="67.0" prefWidth="590.0" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <TextArea fx:id="user1" layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
+        <TextArea fx:id="user2" layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="220.0" />
+        <TextArea fx:id="user3" layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
+        <GridPane fx:id="gridPane1" gridLinesVisible="true" layoutX="4.0" layoutY="39.0" prefHeight="67.0" prefWidth="590.0" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <columnConstraints>
-                <ColumnConstraints maxWidth="296.93089294433594" minWidth="64.93218231201172" prefWidth="294.5715789794922" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="525.0678176879883" minWidth="10.0" prefWidth="295.4284210205078" />
+                <ColumnConstraints fx:id="colConstraint1" maxWidth="296.93089294433594" minWidth="64.93218231201172" prefWidth="294.5715789794922" />
+                <ColumnConstraints fx:id="colConstraint2" hgrow="SOMETIMES" maxWidth="525.0678176879883" minWidth="10.0" prefWidth="295.4284210205078" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="54.447349548339844" minHeight="10.0" prefHeight="49.728729248046875" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="61.85425567626953" minHeight="10.0" prefHeight="50.057708740234375" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="rowConstraint1" maxHeight="54.447349548339844" minHeight="10.0" prefHeight="49.728729248046875" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="rowConstraint2" maxHeight="61.85425567626953" minHeight="10.0" prefHeight="50.057708740234375" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ScrollBar orientation="VERTICAL" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
-                <Label prefHeight="19.0" prefWidth="30.0" text="SGA">
+                <ScrollBar fx:id="scrollBar1" orientation="VERTICAL" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
+                <Label fx:id="labelSGA" prefHeight="19.0" prefWidth="30.0" text="SGA">
                     <GridPane.margin>
-                        <Insets left="20.0" top="-15.0" />
+                        <Insets fx:id="insetLeft1" left="20.0" top="-15.0" />
                     </GridPane.margin>
                 </Label>
             </children>
         </GridPane>
-        <GridPane gridLinesVisible="true" layoutX="-10.0" layoutY="78.0" prefHeight="90.0" prefWidth="600.0" AnchorPane.bottomAnchor="170.5" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+        <GridPane fx:id="gridPane2" gridLinesVisible="true" layoutX="-10.0" layoutY="78.0" prefHeight="90.0" prefWidth="600.0" AnchorPane.bottomAnchor="170.5" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fx:id="colConstraint3" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fx:id="colConstraint4" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="rowConstraint3" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="rowConstraint4" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ScrollBar orientation="VERTICAL" prefHeight="85.0" prefWidth="17.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
-                <Label prefHeight="19.0" prefWidth="28.0" text="HDD">
+                <ScrollBar fx:id="scrollBar2" orientation="VERTICAL" prefHeight="85.0" prefWidth="17.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
+                <Label fx:id="labelHDD" prefHeight="19.0" prefWidth="28.0" text="HDD">
                     <GridPane.margin>
-                        <Insets left="20.0" top="-25.0" />
+                        <Insets fx:id="insetLeft2" left="20.0" top="-25.0" />
                     </GridPane.margin>
                 </Label>
             </children>

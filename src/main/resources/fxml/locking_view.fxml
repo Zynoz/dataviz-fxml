@@ -17,48 +17,48 @@
 <?import javafx.scene.image.Image?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.locking.LockingController" fx:id="lockingController">
     <children>
-        <TextArea layoutX="9.0" layoutY="217.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1&#10;&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
-        <TextArea layoutX="19.0" layoutY="227.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2&#10;&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="220.0" />
-        <TextArea layoutX="19.0" layoutY="227.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
-        <TableView layoutX="336.0" layoutY="-5.0" prefHeight="162.0" prefWidth="264.0">
+        <TextArea fx:id="user1" layoutX="9.0" layoutY="217.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1&#10;&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
+        <TextArea fx:id="user2" layoutX="19.0" layoutY="227.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2&#10;&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="220.0" />
+        <TextArea fx:id="user3" layoutX="19.0" layoutY="227.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
+        <TableView fx:id="tableView" layoutX="336.0" layoutY="-5.0" prefHeight="162.0" prefWidth="264.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="c1" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="c2" prefWidth="75.0" text="C2" />
             </columns>
         </TableView>
-        <Circle fill="DODGERBLUE" layoutX="262.0" layoutY="83.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-        <Polygon fill="#e5ff1f" layoutX="62.0" layoutY="177.0" points="-32.82526779174805, 22.750152587890625, 33.590423583984375, 22.750152587890625, 2.596435546875, -11.195663452148438" stroke="BLACK" strokeType="INSIDE" />
-        <Polygon fill="#ff1f92" layoutX="251.0" layoutY="165.0" points="-32.82526779174805, 22.750152587890625, 33.590423583984375, 22.750152587890625, 2.596435546875, -11.195663452148438" stroke="BLACK" strokeType="INSIDE" />
-        <Polygon fill="#ff371f" layoutX="166.0" layoutY="33.0" points="-32.82526779174805, 22.750152587890625, 33.590423583984375, 22.750152587890625, 2.596435546875, -11.195663452148438" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="DODGERBLUE" layoutX="140.0" layoutY="154.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="DODGERBLUE" layoutX="89.0" layoutY="94.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="DODGERBLUE" layoutX="214.0" layoutY="119.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-        <Line endX="27.969940185546875" endY="-41.54808044433594" layoutX="107.0" layoutY="208.0" startX="-31.841217041015625" startY="-29.976028442382812" />
-        <Line endX="34.61151123046875" endY="-43.249839782714844" layoutX="107.0" layoutY="99.0" startX="-4.499946594238281" startY="-10.771011352539062" />
-        <ScrollBar layoutX="583.0" layoutY="21.0" orientation="VERTICAL" prefHeight="136.0" prefWidth="17.0" />
-        <Label disable="true" layoutX="519.0" layoutY="176.0" prefHeight="24.0" prefWidth="73.0" text="Deadlock">
+        <Circle fx:id="circle1" fill="DODGERBLUE" layoutX="262.0" layoutY="83.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+        <Polygon fx:id="polygon1" fill="#e5ff1f" layoutX="62.0" layoutY="177.0" points="-32.82526779174805, 22.750152587890625, 33.590423583984375, 22.750152587890625, 2.596435546875, -11.195663452148438" stroke="BLACK" strokeType="INSIDE" />
+        <Polygon fx:id="polygon2" fill="#ff1f92" layoutX="251.0" layoutY="165.0" points="-32.82526779174805, 22.750152587890625, 33.590423583984375, 22.750152587890625, 2.596435546875, -11.195663452148438" stroke="BLACK" strokeType="INSIDE" />
+        <Polygon fx:id="polygon3" fill="#ff371f" layoutX="166.0" layoutY="33.0" points="-32.82526779174805, 22.750152587890625, 33.590423583984375, 22.750152587890625, 2.596435546875, -11.195663452148438" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="circle2" fill="DODGERBLUE" layoutX="140.0" layoutY="154.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="circle3" fill="DODGERBLUE" layoutX="89.0" layoutY="94.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="circle4" fill="DODGERBLUE" layoutX="214.0" layoutY="119.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+        <Line fx:id="line1" endX="27.969940185546875" endY="-41.54808044433594" layoutX="107.0" layoutY="208.0" startX="-31.841217041015625" startY="-29.976028442382812" />
+        <Line fx:id="line2" endX="34.61151123046875" endY="-43.249839782714844" layoutX="107.0" layoutY="99.0" startX="-4.499946594238281" startY="-10.771011352539062" />
+        <ScrollBar fx:id="scrollBar1" layoutX="583.0" layoutY="21.0" orientation="VERTICAL" prefHeight="136.0" prefWidth="17.0" />
+        <Label fx:id="labelDeadlock" disable="true" layoutX="519.0" layoutY="176.0" prefHeight="24.0" prefWidth="73.0" text="Deadlock">
             <font>
-                <Font size="15.0" />
+                <Font fx:id="fontDeadlock" size="15.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="453.0" layoutY="180.0" prefHeight="17.0" prefWidth="46.0" text="Lock">
+        <Label fx:id="labelLock" disable="true" layoutX="453.0" layoutY="180.0" prefHeight="17.0" prefWidth="46.0" text="Lock">
             <font>
-                <Font size="15.0" />
+                <Font fx:id="fontLock" size="15.0" />
             </font>
         </Label>
-        <ImageView disable="true" fitHeight="23.0" fitWidth="22.0" layoutX="314.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="imageView1" disable="true" fitHeight="23.0" fitWidth="22.0" layoutX="314.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="/images/lock.png" />
+                <Image fx:id="image1" url="/images/lock.png" />
             </image>
         </ImageView>
-        <ImageView disable="true" fitHeight="23.0" fitWidth="22.0" layoutX="314.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="imageView2" disable="true" fitHeight="23.0" fitWidth="22.0" layoutX="314.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="/images/lock.png" />
+                <Image fx:id="image2" url="/images/lock.png" />
             </image>
         </ImageView>
-        <ImageView disable="true" fitHeight="23.0" fitWidth="22.0" layoutX="314.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="imageView3" disable="true" fitHeight="23.0" fitWidth="22.0" layoutX="314.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="/images/lock.png" />
+                <Image fx:id="image3" url="/images/lock.png" />
             </image>
         </ImageView>
     </children>

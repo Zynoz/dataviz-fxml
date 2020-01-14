@@ -9,17 +9,17 @@
 <?import javafx.scene.shape.Line?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.index.IndexController" fx:id="indexController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="230.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="89.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="374.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="19.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="163.0" layoutY="145.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="304.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="466.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
-        <Line endX="27.83990478515625" endY="-38.307952880859375" layoutX="89.0" layoutY="166.0" startX="27.83990478515625" startY="-19.433486938476562" />
-        <Line endX="27.83990478515625" endY="-38.307952880859375" layoutX="154.0" layoutY="165.0" startX="27.83990478515625" startY="-19.433486938476562" />
-        <Line endX="27.83990478515625" endY="-38.307952880859375" layoutX="372.0" layoutY="165.0" startX="27.839874267578125" startY="-21.000015258789062" />
-        <Line endX="27.83990478515625" endY="-38.307952880859375" layoutX="447.0" layoutY="164.0" startX="27.839874267578125" startY="-21.000015258789062" />
-        <Line endX="89.45614624023438" endY="-41.0" layoutX="154.0" layoutY="105.0" startX="27.83990478515625" startY="-19.433486938476562" />
-        <Line endX="-29.754486083984375" endY="-50.0" layoutX="355.0" layoutY="114.0" startX="37.09259033203125" startY="-29.000015258789062" />
+        <Rectangle fx:id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="230.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+        <Rectangle fx:id="rectangle2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="89.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+        <Rectangle fx:id="rectangle3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="374.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+        <Rectangle fx:id="rectangle4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="19.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+        <Rectangle fx:id="rectangle5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="163.0" layoutY="145.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+        <Rectangle fx:id="rectangle6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="304.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+        <Rectangle fx:id="rectangle7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="466.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+        <Line fx:id="line1" endX="27.83990478515625" endY="-38.307952880859375" layoutX="89.0" layoutY="166.0" startX="27.83990478515625" startY="-19.433486938476562" />
+        <Line fx:id="line2" endX="27.83990478515625" endY="-38.307952880859375" layoutX="154.0" layoutY="165.0" startX="27.83990478515625" startY="-19.433486938476562" />
+        <Line fx:id="line3" endX="27.83990478515625" endY="-38.307952880859375" layoutX="372.0" layoutY="165.0" startX="27.839874267578125" startY="-21.000015258789062" />
+        <Line fx:id="line4" endX="27.83990478515625" endY="-38.307952880859375" layoutX="447.0" layoutY="164.0" startX="27.839874267578125" startY="-21.000015258789062" />
+        <Line fx:id="line5" endX="89.45614624023438" endY="-41.0" layoutX="154.0" layoutY="105.0" startX="27.83990478515625" startY="-19.433486938476562" />
+        <Line fx:id="line6" endX="-29.754486083984375" endY="-50.0" layoutX="355.0" layoutY="114.0" startX="37.09259033203125" startY="-29.000015258789062" />
     </children></AnchorPane>
