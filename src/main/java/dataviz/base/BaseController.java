@@ -1,22 +1,21 @@
 package dataviz.base;
 
 import dataviz.Main;
-import dataviz.Util;
+import dataviz.exception.SQLException;
 import dataviz.index.IndexController;
 import dataviz.locking.LockingController;
 import dataviz.memory.MemoryController;
 import dataviz.process.ProcessController;
 import dataviz.transaction.TransactionController;
+import dataviz.util.SQLParser;
+import dataviz.util.Util;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -55,16 +54,19 @@ public class BaseController implements Initializable {
 
     private void loadSQL() {
         //todo check if file content is ok
-        checkIfFileContentIsOk(Util.getFile("txt", "C:"));
+        checkIfFileContentIsOk(Util.getFile("sql", "C:\\Users\\Titan\\Documents\\school\\DBI\\Hilbe\\test"));
+    }
+
+    private void loadCSV() {
+        //todo validate if file content is ok
     }
 
     private void checkIfFileContentIsOk(File file) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
             //todo validate file content
+            System.out.println(SQLParser.getMap(Util.getList(file)));
             Main.alert(Alert.AlertType.INFORMATION, "SQL imported successfully!", "Success!");
-        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
+        } catch (SQLException e) {
             Main.alert(Alert.AlertType.ERROR, "SQL import failed!\n" + e.getMessage(), "Error!");
         }
     }
