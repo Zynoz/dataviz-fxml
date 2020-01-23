@@ -40,25 +40,19 @@ public class SQLParser {
     }
 
     //todo convert map to list of pairs
-    public static Map<SQLType, String> getMap(List<String> sqlStatements) throws SQLException {
+    public static List<SQLPair<SQLType, String>> getSQL(List<String> sqlStatements) throws SQLException {
         Iterator<String> sqlIterator = sqlStatements.iterator();
-        Map<SQLType, String> map = new HashMap<>();
+        List<SQLPair<SQLType, String>> list = new ArrayList<>();
         while (sqlIterator.hasNext()) {
             String sql = sqlIterator.next();
             System.out.println(sql);
             SQLType type = getType(sql);
             if (type == null) {
                 throw new SQLException("Invalid SQL Statement!");
-//                System.out.println("type is null");
             }
-            map.put(type, sql);
+            list.add(SQLPair.of(type, sql));
         }
-        return map;
-    }
-
-    //todo
-    public static void getDeleteStatement(String sql) {
-//        DeleteStatement deleteStatement = new DeleteStatement();
+        return list;
     }
 
     public static List<String> getGroupValues(String sql) {
@@ -84,5 +78,9 @@ public class SQLParser {
         }
         return fieldValues;
     }
+
+//    public static SQLPair<String, String> getFieldsFromSelect() {
+//
+//    }
 
 }
