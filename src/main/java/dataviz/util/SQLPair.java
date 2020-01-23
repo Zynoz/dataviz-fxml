@@ -6,5 +6,4 @@ import lombok.Value;
 public class SQLPair<T, S> {
     private T type;
     private S sql;
-
 }

@@ -4,26 +4,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.base.BaseController" fx:id="baseController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Close" fx:id="close"/>
-                <MenuItem mnemonicParsing="false" text="Import" fx:id="textImport"/>
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Reset" fx:id="reset"/>
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-                <MenuItem mnemonicParsing="false" text="About" fx:id="about"/>
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+       <MenuBar BorderPane.alignment="CENTER">
+           <Menu mnemonicParsing="false" text="File">
+               <MenuItem mnemonicParsing="false" text="Import SQL" fx:id="textImport"/>
+               <MenuItem mnemonicParsing="false" text="Import CSV" fx:id="csvImport"/>
+               <MenuItem mnemonicParsing="false" text="Close" fx:id="close"/>
+           </Menu>
+           <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                   <MenuItem mnemonicParsing="false" text="Reset" fx:id="reset"/>
+               </items>
+           </Menu>
+           <Menu mnemonicParsing="false" text="Help">
+               <items>
+                   <MenuItem mnemonicParsing="false" text="About" fx:id="about"/>
+               </items>
+           </Menu>
+       </MenuBar>
    </top>
    <center>
        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
