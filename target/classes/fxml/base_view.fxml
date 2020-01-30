@@ -11,14 +11,10 @@
                <MenuItem mnemonicParsing="false" text="Close" fx:id="close"/>
            </Menu>
            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                   <MenuItem mnemonicParsing="false" text="Reset" fx:id="reset"/>
-               </items>
+               <MenuItem mnemonicParsing="false" text="Reset" fx:id="reset"/>
            </Menu>
            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                   <MenuItem mnemonicParsing="false" text="About" fx:id="about"/>
-               </items>
+               <MenuItem mnemonicParsing="false" text="About" fx:id="about"/>
            </Menu>
        </MenuBar>
    </top>

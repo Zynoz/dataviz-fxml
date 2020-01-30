@@ -67,7 +67,6 @@ public class BaseController implements Initializable {
 
     private void checkIfFileContentIsOk(File file) {
         try {
-            //todo validate file content
             System.out.println(SQLParser.getSQL(Util.getList(file)));
             Main.alert(Alert.AlertType.INFORMATION, "SQL imported successfully!", "Success!");
         } catch (SQLException | IOException e) {

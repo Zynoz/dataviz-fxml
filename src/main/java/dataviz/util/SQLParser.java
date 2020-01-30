@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class SQLParser {
     //                                                                       tableName1  field2    value3                                id5
-    private static final Pattern UPDATE_PATTERN = Pattern.compile("update (\\w+) set (\\w+) = (\\d+(\"[.,]\\d{1,2}\")?) where id = (\\d+);", Pattern.CASE_INSENSITIVE);
+    private static final Pattern UPDATE_PATTERN = Pattern.compile("update (\\w+) set (\\w+) = (((\\d+)('[.,]\\d{1,2}')?)|('\\w+ ?')) where id = (\\d+);", Pattern.CASE_INSENSITIVE);
 
     //                                                                            tableName1         id2
     private static final Pattern DELETE_PATTERN = Pattern.compile("delete from (\\w+) where id = (\\d+);", Pattern.CASE_INSENSITIVE);
@@ -27,19 +27,22 @@ public class SQLParser {
         final Matcher selectMatcher = SELECT_PATTERN.matcher(sql);
 
         if (insertMatcher.matches()) {
+            System.out.println(sql + " matches insert");
             return SQLType.INSERT;
         } else if (updateMatcher.matches()) {
+            System.out.println(sql + " matches update");
             return SQLType.UPDATE;
         } else if (deleteMatcher.matches()) {
+            System.out.println(sql + " matches delete");
             return SQLType.DELETE;
         } else if (selectMatcher.matches()) {
+            System.out.println(sql + " matches select");
             return SQLType.SELECT;
         } else {
             return null;
         }
     }
 
-    //todo convert map to list of pairs
     public static List<SQLPair<SQLType, String>> getSQL(List<String> sqlStatements) throws SQLException {
         Iterator<String> sqlIterator = sqlStatements.iterator();
         List<SQLPair<SQLType, String>> list = new ArrayList<>();
