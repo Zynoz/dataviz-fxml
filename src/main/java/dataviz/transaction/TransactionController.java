@@ -36,7 +36,7 @@ public class TransactionController implements Initializable {
             String selected = tf1.getSelectedText();
             if (!selected.isEmpty()) {
                 System.out.println("selected: " + selected);
-                System.out.println(SQLParser.getType(selected));
+                System.out.println(SQLParser.getType(selected.trim()));
             } else {
                 System.out.println("selected is empty");
             }
