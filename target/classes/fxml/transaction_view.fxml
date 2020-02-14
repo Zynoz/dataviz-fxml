@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="transactionController" minHeight="0.0" minWidth="0.0"
-            prefHeight="444.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="dataviz.transaction.TransactionController">
+
+<AnchorPane fx:id="transactionController" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.transaction.TransactionController">
    <children>
-      <TabPane fx:id="tabPane" layoutY="-1.0" prefHeight="201.0" prefWidth="258.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutY="-1.0" prefHeight="201.0" prefWidth="258.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab fx:id="undoTab" text="UNDO">
                <content>
                   <AnchorPane fx:id="undoAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="undoTableView" layoutX="1.0" layoutY="-2.0" prefHeight="178.0" prefWidth="260.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
+                        <TableView fx:id="undoTable" layoutX="1.0" layoutY="-2.0" prefHeight="243.0" prefWidth="260.0" AnchorPane.bottomAnchor="-79.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
                            <columns>
                               <TableColumn fx:id="undoRIDCol" prefWidth="75.0" text="RID" />
                               <TableColumn fx:id="undoTIDCol" prefWidth="75.0" text="TID" />
@@ -22,11 +22,11 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="REDO">
+            <Tab fx:id="redoTab" text="REDO">
                <content>
                   <AnchorPane fx:id="redoAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="redoTableView" layoutX="-1.0" layoutY="-1.0" prefHeight="178.0" prefWidth="264.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
+                        <TableView fx:id="redoTable" layoutX="-1.0" layoutY="-1.0" prefHeight="178.0" prefWidth="264.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
                               <TableColumn fx:id="redoRIDCol" prefWidth="75.0" text="RID" />
                               <TableColumn fx:id="redoTIDCol" prefWidth="75.0" text="TID" />
@@ -38,16 +38,25 @@
             </Tab>
          </tabs>
       </TabPane>
-      <TableView fx:id="tableView" layoutX="285.0" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="315.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="285.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+      <TableView fx:id="contentTable" layoutX="285.0" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="396.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columns>
-            <TableColumn fx:id="c1" prefWidth="75.0" text="C1" />
-            <TableColumn fx:id="c2" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="c1" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="c2" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="c21" prefWidth="75.0" text="Amount" />
+            <TableColumn fx:id="c22" prefWidth="112.0" text="Max. Amount" />
          </columns>
       </TableView>
-      <TextArea fx:id="user1" layoutY="209.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
-      <TextArea fx:id="user2" layoutX="390.0" layoutY="203.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="205.0" />
-      <TextArea fx:id="user3" layoutX="395.0" layoutY="211.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="0.0" />
-      <Button fx:id="button1" layoutX="31.0" layoutY="234.0" mnemonicParsing="false" text="Click Me"/>
-      <Label fx:id="counter" layoutX="100.0" layoutY="238.0" text="Counter"/>
+      <Button fx:id="commit1" layoutX="14.0" layoutY="455.0" mnemonicParsing="false" text="Commit" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+      <Button fx:id="rollback1" layoutX="93.0" layoutY="455.0" mnemonicParsing="false" text="Rollback" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="95.0" />
+      <Button fx:id="rollback2" layoutX="325.0" layoutY="455.0" mnemonicParsing="false" text="Rollback" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="299.0" />
+      <Button fx:id="commit2" layoutX="246.0" layoutY="455.0" mnemonicParsing="false" text="Commit" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="381.0" />
+      <Button fx:id="rollback3" layoutX="564.0" layoutY="455.0" mnemonicParsing="false" text="Rollback" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="60.0" />
+      <Button fx:id="commit3" layoutX="486.0" layoutY="455.0" mnemonicParsing="false" text="Commit" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="141.0" />
+      <TextArea fx:id="tf1" layoutX="8.0" layoutY="336.0" prefHeight="114.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="486.0" />
+      <TextArea fx:id="tf2" layoutX="246.0" layoutY="336.0" prefHeight="114.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="254.0" />
+      <TextArea fx:id="tf3" layoutX="505.0" layoutY="336.0" prefHeight="114.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="14.0" />
+      <Button fx:id="go1" layoutX="177.0" layoutY="455.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="↵" />
+      <Button fx:id="go2" layoutX="408.0" layoutY="455.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="↵" />
+      <Button fx:id="go3" layoutX="649.0" layoutY="455.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="↵" />
    </children>
 </AnchorPane>
