@@ -19,6 +19,7 @@ public class SQLParser {
 
     private static final Pattern SELECT_PATTERN = Pattern.compile("select \\* from (\\w+);");
 
+    //todo remove select type and replace with "select all"-button
     public static SQLType getType(String sql) {
         sql = sql.toLowerCase();
         final Matcher insertMatcher = INSERT_PATTERN.matcher(sql);
@@ -81,9 +82,5 @@ public class SQLParser {
         }
         return fieldValues;
     }
-
-//    public static SQLPair<String, String> getFieldsFromSelect() {
-//
-//    }
 
 }
