@@ -15,6 +15,10 @@ import java.util.ResourceBundle;
 
 public class TransactionController implements Initializable {
 
+    private static TransactionController transactionController;
+
+    private ObservableList<TableEntry> entries = FXCollections.observableArrayList();
+
     @FXML
     private Tab undoTab;
 
@@ -39,20 +43,25 @@ public class TransactionController implements Initializable {
     @FXML
     private TableColumn undoRIDCol, undoTIDCol, redoRIDCol, redoTIDCol;
 
-
     @FXML
     private TextArea tf1, tf2, tf3;
 
     @FXML
     private Button go1, go2, go3, commit1, commit2, commit3, rollback1, rollback2, rollback3;
 
+    public static TransactionController getInstance() {
+        return transactionController;
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
+        transactionController = this;
         addListeners();
         setupTableView();
     }
 
     private void addListeners() {
         go1.setOnAction(event -> {
+            System.out.println("IT WORKS");
             String selected = tf1.getSelectedText();
             if (!selected.isEmpty()) {
                 try {
@@ -67,12 +76,26 @@ public class TransactionController implements Initializable {
     }
 
     private void setupTableView() {
-        ObservableList<TableEntry> entries = FXCollections.observableArrayList();
-        entries.add(new TableEntry(1, "Maxi", 10.0, 10.0));
         idColumn.setCellValueFactory(new PropertyValueFactory<TableEntry, Long>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<TableEntry, String>("name"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<TableEntry, Double>("currentAmount"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<TableEntry, Double>("maxAmount"));
+        maxColumn.setCellValueFactory(new PropertyValueFactory<TableEntry, Double>("maxAmount"));
         contentTable.getItems().setAll(entries);
+    }
+
+    public void insertTestEntries() {
+        entries.add(new TableEntry(1, "Maxi", 10.0, 10.0));
+        entries.add(new TableEntry(2, "Isabella", 5.0, 10.0));
+        entries.add(new TableEntry(3, "Emilia", 16.6, 17.6));
+        entries.add(new TableEntry(4, "Emma", 6.0, 10.0));
+        System.out.println("inserted");
+    }
+
+    public void updateTableView() {
+        contentTable.getItems().setAll(entries);
+    }
+
+    public Button getGo1() {
+        return go1;
     }
 }

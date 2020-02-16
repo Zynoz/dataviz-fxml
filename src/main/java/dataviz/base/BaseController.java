@@ -1,6 +1,7 @@
 package dataviz.base;
 
 import dataviz.Main;
+import dataviz.transaction.TransactionController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +22,9 @@ public class BaseController implements Initializable {
     @FXML
     private MenuItem close;
 
+    @FXML
+    private MenuItem testInsert;
+
     public void initialize(URL location, ResourceBundle resources) {
         addListeners();
     }
@@ -28,5 +32,9 @@ public class BaseController implements Initializable {
     private void addListeners() {
         close.setOnAction(e -> Platform.exit());
         about.setOnAction(e -> Main.alert(Alert.AlertType.INFORMATION, "Created by:\n\tDenoise Stancov\n\tDenis Pelz\n\tAbraham Sedra\n\tMaximilian Moser\n\nVersion:\n\t0.1 pre-alpha", "About this Application"));
+        testInsert.setOnAction(event -> {
+            TransactionController.getInstance().insertTestEntries();
+            TransactionController.getInstance().updateTableView();
+        });
     }
 }

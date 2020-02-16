@@ -26,6 +26,10 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/base_view.fxml"));
         primaryStage.setTitle("DataViz");
         primaryStage.setScene(new Scene(root, 750, 600));
+//        Button btn = TransactionController.getInstance().getGo1();
+//        KeyCombination kc = new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN);
+//        Mnemonic mn = new Mnemonic(btn, kc);
+//        primaryStage.getScene().addMnemonic(mn);
         primaryStage.show();
     }
 }
