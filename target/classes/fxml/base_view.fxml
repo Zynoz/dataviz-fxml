@@ -2,39 +2,62 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.base.BaseController" fx:id="baseController">
-   <top>
-       <MenuBar BorderPane.alignment="CENTER">
-           <Menu mnemonicParsing="false" text="File">
-               <MenuItem mnemonicParsing="false" text="Import SQL" fx:id="textImport"/>
-               <MenuItem mnemonicParsing="false" text="Import CSV" fx:id="csvImport"/>
-               <MenuItem mnemonicParsing="false" text="Close" fx:id="close"/>
-           </Menu>
-           <Menu mnemonicParsing="false" text="Edit">
-               <MenuItem mnemonicParsing="false" text="Reset" fx:id="reset"/>
-           </Menu>
-           <Menu mnemonicParsing="false" text="Help">
-               <MenuItem mnemonicParsing="false" text="About" fx:id="about"/>
-           </Menu>
-       </MenuBar>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="baseController" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="774.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="dataviz.base.BaseController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="textImport" mnemonicParsing="false" text="Import SQL"/>
+                        <MenuItem fx:id="csvImport" mnemonicParsing="false" text="Import CSV"/>
+                        <MenuItem fx:id="testInsert" mnemonicParsing="false" text="Test insert"/>
+                        <MenuItem fx:id="close" mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem fx:id="reset" mnemonicParsing="false" text="Reset"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem fx:id="about" mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
    </top>
    <center>
        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-           <Tab text="Transaction" fx:id="trans_tab">
-               <fx:include fx:id="transaction" source="transaction_view.fxml"/>
-           </Tab>
-           <Tab text="Memory" fx:id="mem_tab">
-               <fx:include fx:id="memory" source="memory_view.fxml"/>
-           </Tab>
-           <Tab text="Process" fx:id="pro_tab">
-               <fx:include fx:id="process" source="process_view.fxml"/>
-           </Tab>
-           <Tab text="Index" fx:id="ind_tab">
-               <fx:include fx:id="index" source="index_view.fxml"/>
-           </Tab>
-           <Tab text="locking" fx:id="loc_tab">
-               <fx:include fx:id="locking" source="locking_view.fxml"/>
-           </Tab>
+           <tabs>
+               <Tab fx:id="trans_tab" text="Transaction">
+                   <content>
+                       <fx:include fx:id="transaction" source="transaction_view.fxml"/>
+                   </content>
+               </Tab>
+               <Tab fx:id="mem_tab" text="Memory">
+                   <content>
+                       <fx:include fx:id="memory" source="memory_view.fxml"/>
+                   </content>
+               </Tab>
+               <Tab fx:id="pro_tab" text="Process">
+                   <content>
+                       <fx:include fx:id="process" source="process_view.fxml"/>
+                   </content>
+               </Tab>
+               <Tab fx:id="ind_tab" text="Index">
+                   <content>
+                       <fx:include fx:id="index" source="index_view.fxml"/>
+                   </content>
+               </Tab>
+               <Tab fx:id="loc_tab" text="locking">
+                   <content>
+                       <fx:include fx:id="locking" source="locking_view.fxml"/>
+                   </content>
+               </Tab>
+           </tabs>
 
        </TabPane>
    </center>
