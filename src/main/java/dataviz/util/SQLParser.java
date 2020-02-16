@@ -3,6 +3,7 @@ package dataviz.util;
 import dataviz.exception.SQLException;
 
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +19,8 @@ public class SQLParser {
 //    insert into dbname (?, ?, ?) values (1, 2, 3)
 
     private static final Pattern SELECT_PATTERN = Pattern.compile("select \\* from (\\w+);");
+
+    private static final Logger LOGGER = Logger.getLogger(SQLParser.class.getName());
 
     //todo remove select type and replace with "select all"-button
     public static SQLType getType(String sql) {
@@ -59,6 +62,37 @@ public class SQLParser {
         return list;
     }
 
+    private static SQLPair<SQLType, String> getSQLFromSingleString(String sql) throws SQLException {
+        SQLType type = getType(sql);
+        if (type == null) {
+            throw new SQLException("Invalid SQL Statement!");
+        } else {
+            return SQLPair.of(type, sql);
+        }
+    }
+
+    public static List<SQLPair<SQLType, String>> getSQLFromString(String sql) throws SQLException {
+        LOGGER.info(sql);
+        sql = sql.replaceAll("\\n", "");
+        List<SQLPair<SQLType, String>> list = new ArrayList<>();
+        if (sql.split(";").length > 1) {
+            String[] sqlStatements = sql.split(";");
+            for (int i = 0; i < sqlStatements.length; i++) {
+                sqlStatements[i] = sqlStatements[i] + ";";
+            }
+            for (String sqlStatement : sqlStatements) {
+                SQLType type = getType(sqlStatement.trim());
+                if (type == null) {
+                    throw new SQLException("Invalid SQL Statement for SQL: " + sqlStatement);
+                }
+                list.add(SQLPair.of(type, sqlStatement));
+            }
+        } else {
+            list.add(getSQLFromSingleString(sql));
+        }
+        return list;
+    }
+
     public static List<String> getGroupValues(String sql) {
         List<String> groupValues = new ArrayList<>();
         sql = sql.replaceAll("'", "");
@@ -82,5 +116,4 @@ public class SQLParser {
         }
         return fieldValues;
     }
-
 }

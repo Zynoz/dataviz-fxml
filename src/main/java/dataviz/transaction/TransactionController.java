@@ -1,5 +1,7 @@
 package dataviz.transaction;
 
+import dataviz.Main;
+import dataviz.exception.SQLException;
 import dataviz.util.SQLParser;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +38,11 @@ public class TransactionController implements Initializable {
             String selected = tf1.getSelectedText();
             if (!selected.isEmpty()) {
                 System.out.println("selected: " + selected);
-                System.out.println(SQLParser.getType(selected.trim()));
+                try {
+                    System.out.println(SQLParser.getSQLFromString(selected.trim()));
+                } catch (SQLException e) {
+                    Main.alert(Alert.AlertType.ERROR, e.getMessage(), "SQL Error");
+                }
             } else {
                 System.out.println("selected is empty");
             }
