@@ -20,9 +20,8 @@ public class SQLParser {
 
     private static final Pattern SELECT_PATTERN = Pattern.compile("select \\* from (\\w+);");
 
-    private static final Logger LOGGER = Logger.getLogger(SQLParser.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(SQLParser.class.getSimpleName());
 
-    //todo remove select type and replace with "select all"-button
     public static SQLType getType(String sql) {
         sql = sql.toLowerCase();
         final Matcher insertMatcher = INSERT_PATTERN.matcher(sql);
@@ -31,16 +30,12 @@ public class SQLParser {
         final Matcher selectMatcher = SELECT_PATTERN.matcher(sql);
 
         if (insertMatcher.matches()) {
-            System.out.println(sql + " matches insert");
             return SQLType.INSERT;
         } else if (updateMatcher.matches()) {
-            System.out.println(sql + " matches update");
             return SQLType.UPDATE;
         } else if (deleteMatcher.matches()) {
-            System.out.println(sql + " matches delete");
             return SQLType.DELETE;
         } else if (selectMatcher.matches()) {
-            System.out.println(sql + " matches select");
             return SQLType.SELECT;
         } else {
             return null;
@@ -52,7 +47,7 @@ public class SQLParser {
         List<SQLPair<SQLType, String>> list = new ArrayList<>();
         while (sqlIterator.hasNext()) {
             String sql = sqlIterator.next();
-            System.out.println(sql);
+//            System.out.println(sql);
             SQLType type = getType(sql);
             if (type == null) {
                 throw new SQLException("Invalid SQL Statement!");
