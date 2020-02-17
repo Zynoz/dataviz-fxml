@@ -1,6 +1,7 @@
 package dataviz.util;
 
 import dataviz.exception.SQLException;
+import dataviz.transaction.TableEntry;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -8,17 +9,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SQLParser {
+
     //                                                                       tableName1  field2    value3                                id5
-    private static final Pattern UPDATE_PATTERN = Pattern.compile("update (\\w+) set (\\w+) = (((\\d+)('[.,]\\d{1,2}')?)|('\\w+ ?')) where id = (\\d+);", Pattern.CASE_INSENSITIVE);
-
+    public static final Pattern UPDATE_PATTERN = Pattern.compile("update benutzer set (name|amount|maxamount) = (((\\d+)('[.,]\\d{1,2}')?)|('\\w+ ?')) where (id|name|amount|maxamount) = (((\\d+)('[.,]\\d{1,2}')?)|('\\w+ ?'));", Pattern.CASE_INSENSITIVE);
     //                                                                            tableName1         id2
-    private static final Pattern DELETE_PATTERN = Pattern.compile("delete from (\\w+) where id = (\\d+);", Pattern.CASE_INSENSITIVE);
-
+    public static final Pattern DELETE_PATTERN = Pattern.compile("delete from benutzer where (id) = (\\d{1,4});", Pattern.CASE_INSENSITIVE);
     //                                                                          tableName1               value1     value2  value2(\w+), (\w+)
-    private static final Pattern INSERT_PATTERN = Pattern.compile("insert into (\\w+) \\((\\w+), (\\w+), (\\w+)\\) values \\((\\w+), (\\w+), (\\w+)\\);", Pattern.CASE_INSENSITIVE);
-//    insert into dbname (?, ?, ?) values (1, 2, 3)
-
-    private static final Pattern SELECT_PATTERN = Pattern.compile("select \\* from (\\w+);");
+    public static final Pattern INSERT_PATTERN = Pattern.compile("insert into (benutzer) \\(id, name, amount, maxamount\\) values \\((\\d{1,4}), ('[A-z]+'), (\\d+(\\.\\d{1,2})?), (\\d+(\\.\\d{1,2})?)\\);", Pattern.CASE_INSENSITIVE);
+    private static final String tableName = "";
+    //    insert into dbname (?, ?, ?) values (1, 2, 3)
+    public static final Pattern SELECT_PATTERN = Pattern.compile("select \\* from " + tableName + ";");
 
     private static final Logger LOGGER = Logger.getLogger(SQLParser.class.getSimpleName());
 
@@ -57,7 +57,7 @@ public class SQLParser {
         return list;
     }
 
-    private static SQLPair<SQLType, String> getSQLFromSingleString(String sql) throws SQLException {
+    public static SQLPair<SQLType, String> getSQLFromSingleString(String sql) throws SQLException {
         SQLType type = getType(sql);
         if (type == null) {
             throw new SQLException("Invalid SQL Statement!");
@@ -98,6 +98,14 @@ public class SQLParser {
             }
         }
         return groupValues;
+    }
+
+    public static TableEntry getInsertData(String sql) {
+        Matcher matcher = INSERT_PATTERN.matcher(sql);
+        if (matcher.matches()) {
+            return new TableEntry(Long.parseLong(matcher.group(2)), matcher.group(3), Double.parseDouble(matcher.group(4)), Double.parseDouble(matcher.group(6)));
+        }
+        return null;
     }
 
     public static Map<String, String> convertInsertListToMap(List<String> insertList) {

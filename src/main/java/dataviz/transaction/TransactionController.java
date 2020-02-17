@@ -65,7 +65,10 @@ public class TransactionController implements Initializable {
             String selected = tf1.getSelectedText();
             if (!selected.isEmpty()) {
                 try {
-                    System.out.println(SQLParser.getSQLFromString(selected.trim()));
+                    String out = SQLParser.getSQLFromSingleString(selected.trim()).getSql();
+                    System.out.println(out);
+                    entries.add(SQLParser.getInsertData(out));
+                    updateTableView();
                 } catch (SQLException e) {
                     Main.alert(Alert.AlertType.ERROR, e.getMessage(), e.getClass().getSimpleName());
                 }
