@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="baseController" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="774.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="dataviz.base.BaseController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="textImport" mnemonicParsing="false" text="Import SQL"/>
+                        <MenuItem fx:id="csvImport" mnemonicParsing="false" text="Import CSV"/>
+                        <MenuItem fx:id="testInsert" mnemonicParsing="false" text="Test insert"/>
+                        <MenuItem fx:id="close" mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem fx:id="reset" mnemonicParsing="false" text="Reset"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem fx:id="regexInfo" mnemonicParsing="false" text="Regex-Info"/>
+                        <MenuItem fx:id="about" mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab fx:id="trans_tab" text="Transaction">
+                    <content>
+                        <fx:include fx:id="transaction" source="transaction_view.fxml"/>
+                    </content>
+                </Tab>
+                <Tab fx:id="mem_tab" text="Memory">
+                    <content>
+                        <fx:include fx:id="memory" source="memory_view.fxml"/>
+                    </content>
+                </Tab>
+                <Tab fx:id="pro_tab" text="Process">
+                    <content>
+                        <fx:include fx:id="process" source="process_view.fxml"/>
+                    </content>
+                </Tab>
+                <Tab fx:id="ind_tab" text="Index">
+                    <content>
+                        <fx:include fx:id="index" source="index_view.fxml"/>
+                    </content>
+                </Tab>
+                <Tab fx:id="loc_tab" text="locking">
+                    <content>
+                        <fx:include fx:id="locking" source="locking_view.fxml"/>
+                    </content>
+                </Tab>
+            </tabs>
 
-<BorderPane fx:id="baseController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.base.BaseController">
-   <top>
-       <MenuBar BorderPane.alignment="CENTER">
-          <menus>
-              <Menu mnemonicParsing="false" text="File">
-                 <items>
-                     <MenuItem fx:id="textImport" mnemonicParsing="false" text="Import SQL" />
-                     <MenuItem fx:id="csvImport" mnemonicParsing="false" text="Import CSV" />
-                     <MenuItem fx:id="testInsert" mnemonicParsing="false" text="Test insert" />
-                     <MenuItem fx:id="close" mnemonicParsing="false" text="Close" />
-                 </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Edit">
-                 <items>
-                     <MenuItem fx:id="reset" mnemonicParsing="false" text="Reset" />
-                 </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Help">
-                 <items>
-                     <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
-                 </items>
-              </Menu>
-          </menus>
-       </MenuBar>
-   </top>
-   <center>
-       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-          <tabs>
-              <Tab fx:id="trans_tab" text="Transaction">
-                 <content>
-                     <fx:include fx:id="transaction" source="transaction_view.fxml" />
-                 </content>
-              </Tab>
-              <Tab fx:id="mem_tab" text="Memory">
-                 <content>
-                     <fx:include fx:id="memory" source="memory_view.fxml" />
-                 </content>
-              </Tab>
-              <Tab fx:id="pro_tab" text="Process">
-                 <content>
-                     <fx:include fx:id="process" source="process_view.fxml" />
-                 </content>
-              </Tab>
-              <Tab fx:id="ind_tab" text="Index">
-                 <content>
-                     <fx:include fx:id="index" source="index_view.fxml" />
-                 </content>
-              </Tab>
-              <Tab fx:id="loc_tab" text="locking">
-                 <content>
-                     <fx:include fx:id="locking" source="locking_view.fxml" />
-                 </content>
-              </Tab>
-          </tabs>
-
-       </TabPane>
+        </TabPane>
    </center>
 </BorderPane>

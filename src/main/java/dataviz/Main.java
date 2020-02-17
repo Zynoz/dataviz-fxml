@@ -24,6 +24,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/base_view.fxml"));
+        primaryStage.setMaximized(true);
         primaryStage.setTitle("DataViz");
         primaryStage.setScene(new Scene(root, 750, 600));
 //        Button btn = TransactionController.getInstance().getGo1();
