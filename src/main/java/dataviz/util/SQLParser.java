@@ -11,23 +11,19 @@ import java.util.regex.Pattern;
 public class SQLParser {
 
     //                                                                       tableName1  field2    value3                                id5
-    public static final Pattern UPDATE_PATTERN = Pattern.compile("update benutzer set (name|amount|maxamount) = (((\\d+)('[.,]\\d{1,2}')?)|('\\w+ ?')) where (id|name|amount|maxamount) = (((\\d+)('[.,]\\d{1,2}')?)|('\\w+ ?'));", Pattern.CASE_INSENSITIVE);
+    public static final Pattern UPDATE_PATTERN = Pattern.compile("update benutzer\\sset (name|amount|maxamount) = (((\\d+)('[.,]\\d{1,2}')?)|('\\w+ ?'))\\swhere (id) = (\\d{1,4});", Pattern.CASE_INSENSITIVE);
+    //                                                                          tableName1               value1     value2  value2(\w+), (\w+)
+    public static final Pattern INSERT_PATTERN = Pattern.compile("insert into (benutzer) \\((\\d{1,4}), ('[A-z]+'), (\\d+(\\.\\d{1,2})?), (\\d+(\\.\\d{1,2})?)\\);", Pattern.CASE_INSENSITIVE);
     //                                                                            tableName1         id2
     public static final Pattern DELETE_PATTERN = Pattern.compile("delete from benutzer where (id) = (\\d{1,4});", Pattern.CASE_INSENSITIVE);
-    //                                                                          tableName1               value1     value2  value2(\w+), (\w+)
-    public static final Pattern INSERT_PATTERN = Pattern.compile("insert into (benutzer) \\(id, name, amount, maxamount\\) values \\((\\d{1,4}), ('[A-z]+'), (\\d+(\\.\\d{1,2})?), (\\d+(\\.\\d{1,2})?)\\);", Pattern.CASE_INSENSITIVE);
-    private static final String tableName = "";
-    //    insert into dbname (?, ?, ?) values (1, 2, 3)
-    public static final Pattern SELECT_PATTERN = Pattern.compile("select \\* from " + tableName + ";");
-
     private static final Logger LOGGER = Logger.getLogger(SQLParser.class.getSimpleName());
+
 
     public static SQLType getType(String sql) {
         sql = sql.toLowerCase();
         final Matcher insertMatcher = INSERT_PATTERN.matcher(sql);
         final Matcher updateMatcher = UPDATE_PATTERN.matcher(sql);
         final Matcher deleteMatcher = DELETE_PATTERN.matcher(sql);
-        final Matcher selectMatcher = SELECT_PATTERN.matcher(sql);
 
         if (insertMatcher.matches()) {
             return SQLType.INSERT;
@@ -35,8 +31,6 @@ public class SQLParser {
             return SQLType.UPDATE;
         } else if (deleteMatcher.matches()) {
             return SQLType.DELETE;
-        } else if (selectMatcher.matches()) {
-            return SQLType.SELECT;
         } else {
             return null;
         }

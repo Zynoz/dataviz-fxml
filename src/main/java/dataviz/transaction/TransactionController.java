@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TransactionController implements Initializable {
@@ -18,6 +19,8 @@ public class TransactionController implements Initializable {
     private static TransactionController transactionController;
 
     private ObservableList<TableEntry> entries = FXCollections.observableArrayList();
+
+    private TransactionManager tm;
 
     @FXML
     private Tab undoTab;
@@ -55,19 +58,19 @@ public class TransactionController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         transactionController = this;
+        tm = TransactionManager.getInstance();
         addListeners();
         setupTableView();
     }
 
     private void addListeners() {
         go1.setOnAction(event -> {
-            System.out.println("IT WORKS");
             String selected = tf1.getSelectedText();
             if (!selected.isEmpty()) {
                 try {
-                    String out = SQLParser.getSQLFromSingleString(selected.trim()).getSql();
-                    System.out.println(out);
-                    entries.add(SQLParser.getInsertData(out));
+                    String sql = SQLParser.getSQLFromSingleString(selected.trim()).getSql();
+                    tm.executeStatement(sql);
+                    entries.add(SQLParser.getInsertData(sql));
                     updateTableView();
                 } catch (SQLException e) {
                     Main.alert(Alert.AlertType.ERROR, e.getMessage(), e.getClass().getSimpleName());
@@ -86,16 +89,16 @@ public class TransactionController implements Initializable {
         contentTable.getItems().setAll(entries);
     }
 
-    public void insertTestEntries() {
-        entries.add(new TableEntry(1, "Maxi", 10.0, 10.0));
-        entries.add(new TableEntry(2, "Isabella", 5.0, 10.0));
-        entries.add(new TableEntry(3, "Emilia", 16.6, 17.6));
-        entries.add(new TableEntry(4, "Emma", 6.0, 10.0));
-        System.out.println("inserted");
-    }
-
     public void updateTableView() {
         contentTable.getItems().setAll(entries);
+    }
+
+    public void addToTableView(List<TableEntry> tableEntries) {
+        contentTable.getItems().addAll(tableEntries);
+    }
+
+    public void removeFromTableView(List<TableEntry> tableEntries) {
+        contentTable.getItems().removeAll(tableEntries);
     }
 
     public Button getGo1() {

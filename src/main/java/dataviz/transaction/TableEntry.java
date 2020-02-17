@@ -8,6 +8,7 @@ public class TableEntry {
     private double maxAmount;
 
     public TableEntry() {
+
     }
 
     public TableEntry(long id, String name, double currentAmount, double maxAmount) {
