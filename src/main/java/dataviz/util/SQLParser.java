@@ -2,6 +2,8 @@ package dataviz.util;
 
 import dataviz.exception.SQLException;
 import dataviz.transaction.TableEntry;
+import dataviz.transaction.TransactionController;
+import javafx.collections.ObservableList;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -72,6 +74,7 @@ public class SQLParser {
             for (String sqlStatement : sqlStatements) {
                 SQLType type = getType(sqlStatement.trim());
                 if (type == null) {
+                    LOGGER.severe("Invalid SQL Statement for SQL: " + sqlStatement);
                     throw new SQLException("Invalid SQL Statement for SQL: " + sqlStatement);
                 }
                 list.add(SQLPair.of(type, sqlStatement));
@@ -100,6 +103,32 @@ public class SQLParser {
             return new TableEntry(Long.parseLong(matcher.group(2)), matcher.group(3), Double.parseDouble(matcher.group(4)), Double.parseDouble(matcher.group(6)));
         }
         return null;
+    }
+
+    //todo
+    public static TableEntry getDeleteData(String sql) {
+        Matcher matcher = DELETE_PATTERN.matcher(sql);
+        TableEntry toDelete = null;
+        if (matcher.matches()) {
+            int id = Integer.parseInt(matcher.group(2));
+            LOGGER.info("ID to delete: " + id);
+            ObservableList<TableEntry> entries = TransactionController.getInstance().getEntries();
+            for (TableEntry next : entries) {
+                if (next.getId() == id) {
+                    toDelete = next;
+                    LOGGER.info("Found TableEntry to delete");
+                }
+            }
+            return toDelete;
+        }
+        LOGGER.info("Found no TableEntry to delete");
+        return null;
+    }
+
+    public static TableEntry getUpdateData(String sql) {
+        ObservableList<TableEntry> entries = TransactionController.getInstance().getEntries();
+
+        return new TableEntry();
     }
 
     public static Map<String, String> convertInsertListToMap(List<String> insertList) {

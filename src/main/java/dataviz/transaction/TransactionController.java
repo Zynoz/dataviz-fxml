@@ -2,7 +2,6 @@ package dataviz.transaction;
 
 import dataviz.Main;
 import dataviz.exception.SQLException;
-import dataviz.util.SQLParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -68,9 +67,7 @@ public class TransactionController implements Initializable {
             String selected = tf1.getSelectedText();
             if (!selected.isEmpty()) {
                 try {
-                    String sql = SQLParser.getSQLFromSingleString(selected.trim()).getSql();
-                    tm.executeStatement(sql);
-                    entries.add(SQLParser.getInsertData(sql));
+                    tm.executeStatement(selected.trim());
                     updateTableView();
                 } catch (SQLException e) {
                     Main.alert(Alert.AlertType.ERROR, e.getMessage(), e.getClass().getSimpleName());
@@ -95,13 +92,34 @@ public class TransactionController implements Initializable {
 
     public void addToTableView(List<TableEntry> tableEntries) {
         contentTable.getItems().addAll(tableEntries);
+        updateTableView();
+    }
+
+    public void addToTableView(TableEntry tableEntry) {
+        entries.add(tableEntry);
+        updateTableView();
     }
 
     public void removeFromTableView(List<TableEntry> tableEntries) {
         contentTable.getItems().removeAll(tableEntries);
+        updateTableView();
+    }
+
+    public void removeFromTableView(TableEntry delete) {
+        entries.removeIf(te -> te.equals(delete));
+        updateTableView();
+    }
+
+    public void updateTableView(TableEntry update) {
+
+        updateTableView();
     }
 
     public Button getGo1() {
         return go1;
+    }
+
+    public ObservableList<TableEntry> getEntries() {
+        return entries;
     }
 }

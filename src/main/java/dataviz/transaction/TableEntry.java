@@ -1,5 +1,7 @@
 package dataviz.transaction;
 
+import java.util.Objects;
+
 public class TableEntry {
 
     private long id;
@@ -58,5 +60,31 @@ public class TableEntry {
                 ", currentAmount=" + currentAmount +
                 ", maxAmount=" + maxAmount +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TableEntry that = (TableEntry) o;
+
+        if (id != that.id) return false;
+        if (Double.compare(that.currentAmount, currentAmount) != 0) return false;
+        if (Double.compare(that.maxAmount, maxAmount) != 0) return false;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        temp = Double.doubleToLongBits(currentAmount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(maxAmount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }
