@@ -111,7 +111,13 @@ public class TransactionController implements Initializable {
     }
 
     public void updateTableView(TableEntry update) {
-
+        for (TableEntry te : entries) {
+            if (te.getId() == update.getId()) {
+                te.setName(update.getName());
+                te.setCurrentAmount(update.getCurrentAmount());
+                te.setMaxAmount(update.getMaxAmount());
+            }
+        }
         updateTableView();
     }
 

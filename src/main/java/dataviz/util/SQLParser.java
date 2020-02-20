@@ -4,6 +4,7 @@ import dataviz.exception.SQLException;
 import dataviz.transaction.TableEntry;
 import dataviz.transaction.TransactionController;
 import javafx.collections.ObservableList;
+import lombok.SneakyThrows;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -18,6 +19,7 @@ public class SQLParser {
     public static final Pattern INSERT_PATTERN = Pattern.compile("insert into (benutzer) \\((\\d{1,4}), ('[A-z]+'), (\\d+(\\.\\d{1,2})?), (\\d+(\\.\\d{1,2})?)\\);", Pattern.CASE_INSENSITIVE);
     //                                                                            tableName1         id2
     public static final Pattern DELETE_PATTERN = Pattern.compile("delete from benutzer where (id) = (\\d{1,4});", Pattern.CASE_INSENSITIVE);
+
     private static final Logger LOGGER = Logger.getLogger(SQLParser.class.getSimpleName());
 
 
@@ -97,12 +99,17 @@ public class SQLParser {
         return groupValues;
     }
 
-    public static TableEntry getInsertData(String sql) {
+    public static TableEntry getInsertData(String sql) throws SQLException {
         Matcher matcher = INSERT_PATTERN.matcher(sql);
         if (matcher.matches()) {
-            return new TableEntry(Long.parseLong(matcher.group(2)), matcher.group(3), Double.parseDouble(matcher.group(4)), Double.parseDouble(matcher.group(6)));
+            List<TableEntry> entries = TransactionController.getInstance().getEntries();
+            int id = Integer.parseInt(matcher.group(2));
+            if (entries.stream().anyMatch(te -> te.getId() == id)) {
+                throw new SQLException("This id is already in use");
+            }
+            return new TableEntry(Long.parseLong(matcher.group(2)), matcher.group(3).replaceAll("'", ""), Double.parseDouble(matcher.group(4)), Double.parseDouble(matcher.group(6)));
         }
-        return null;
+        throw new SQLException("Invalid SQL");
     }
 
     //todo
@@ -125,10 +132,42 @@ public class SQLParser {
         return null;
     }
 
+    @SneakyThrows
     public static TableEntry getUpdateData(String sql) {
         ObservableList<TableEntry> entries = TransactionController.getInstance().getEntries();
 
-        return new TableEntry();
+        Matcher matcher = UPDATE_PATTERN.matcher(sql);
+        if (matcher.matches()) {
+            int id = Integer.parseInt(matcher.group(8));
+            LOGGER.info("ID: " + id);
+
+            TableEntry toUpdate = null;
+            for (TableEntry te : entries) {
+                if (te.getId() == id) {
+                    toUpdate = te;
+                }
+            }
+            LOGGER.info("toUpdate: " + toUpdate);
+            LOGGER.info("tablecolumnname: " + matcher.group(1));
+            TableColumn toChange = TableColumn.getTableColumn(matcher.group(1));
+            LOGGER.info("toChange: " + toChange);
+            if (toChange.equals(TableColumn.NAME)) {
+                String name = matcher.group(2).replaceAll("'", "");
+                LOGGER.info("Name: " + name);
+                toUpdate.setName(name);
+                return toUpdate;
+            } else if (toChange.equals(TableColumn.AMOUNT)) {
+                double amount = Double.parseDouble(matcher.group(2));
+                toUpdate.setCurrentAmount(amount);
+                return toUpdate;
+            } else if (toChange.equals(TableColumn.MAXAMOUNT)) {
+                double maxamount = Double.parseDouble(matcher.group(2));
+                LOGGER.info("maxamount: " + maxamount);
+                toUpdate.setMaxAmount(maxamount);
+                return toUpdate;
+            }
+        }
+        throw new SQLException("Could not parse SQL!");
     }
 
     public static Map<String, String> convertInsertListToMap(List<String> insertList) {
