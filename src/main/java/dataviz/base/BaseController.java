@@ -41,7 +41,7 @@ public class BaseController implements Initializable {
             TransactionController.getInstance().updateTableView();
         });
         StringBuilder sb = new StringBuilder();
-        sb.append(SQLParser.INSERT_PATTERN.toString()).append("\n\n").append(SQLParser.UPDATE_PATTERN.toString()).append("\n\n").append(SQLParser.DELETE_PATTERN.toString());
+        sb.append("INSERT").append("\n").append(SQLParser.INSERT_PATTERN.toString()).append("\n\n").append("UPDATE").append("\n").append(SQLParser.UPDATE_PATTERN.toString()).append("\n\n").append("DELETE").append("\n").append(SQLParser.DELETE_PATTERN.toString());
         regexInfo.setOnAction(e -> {
             Main.alert(Alert.AlertType.INFORMATION, sb.toString(), "SQL Code must match one of the following patterns!");
         });
