@@ -1,7 +1,6 @@
 package dataviz.base;
 
 import dataviz.Main;
-import dataviz.transaction.TransactionController;
 import dataviz.util.SQLParser;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -24,9 +23,6 @@ public class BaseController implements Initializable {
     private MenuItem close;
 
     @FXML
-    private MenuItem testInsert;
-
-    @FXML
     private MenuItem regexInfo;
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,10 +32,6 @@ public class BaseController implements Initializable {
     private void addListeners() {
         close.setOnAction(e -> Platform.exit());
         about.setOnAction(e -> Main.alert(Alert.AlertType.INFORMATION, "Created by:\n\tDeonisie Stancov\n\tDenis Pelz\n\tAbraham Sedra\n\tMaximilian Moser\n\nVersion:\n\t0.1 pre-alpha", "About this Application"));
-        testInsert.setOnAction(event -> {
-            TransactionController.getInstance().insertTestEntries();
-            TransactionController.getInstance().updateTableView();
-        });
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT").append("\n").append(SQLParser.INSERT_PATTERN.toString()).append("\n\n").append("UPDATE").append("\n").append(SQLParser.UPDATE_PATTERN.toString()).append("\n\n").append("DELETE").append("\n").append(SQLParser.DELETE_PATTERN.toString());
         regexInfo.setOnAction(e -> {

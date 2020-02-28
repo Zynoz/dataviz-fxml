@@ -12,7 +12,6 @@
                     <items>
                         <MenuItem fx:id="textImport" mnemonicParsing="false" text="Import SQL"/>
                         <MenuItem fx:id="csvImport" mnemonicParsing="false" text="Import CSV"/>
-                        <MenuItem fx:id="testInsert" mnemonicParsing="false" text="Test insert"/>
                         <MenuItem fx:id="close" mnemonicParsing="false" text="Close"/>
                     </items>
                 </Menu>

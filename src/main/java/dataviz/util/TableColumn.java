@@ -7,7 +7,6 @@ public enum TableColumn {
     INVALID;
 
     static TableColumn getTableColumn(String tableColumn) {
-        System.out.println(tableColumn);
         if (NAME.name().toLowerCase().equals(tableColumn)) {
             return NAME;
         } else if (AMOUNT.name().toLowerCase().equals(tableColumn)) {
