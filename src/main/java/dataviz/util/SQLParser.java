@@ -45,7 +45,6 @@ public class SQLParser {
         List<SQLPair<SQLType, String>> list = new ArrayList<>();
         while (sqlIterator.hasNext()) {
             String sql = sqlIterator.next();
-//            System.out.println(sql);
             SQLType type = getType(sql);
             if (type == null) {
                 throw new SQLException("Invalid SQL Statement!");
@@ -146,6 +145,9 @@ public class SQLParser {
                 if (te.getId() == id) {
                     toUpdate = te;
                 }
+            }
+            if (toUpdate == null) {
+                throw new SQLException("Could not find entry to update!");
             }
             LOGGER.info("toUpdate: " + toUpdate);
             LOGGER.info("tablecolumnname: " + matcher.group(1));
