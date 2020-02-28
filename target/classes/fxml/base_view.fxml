@@ -23,6 +23,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
+                        <MenuItem fx:id="regexInfo" mnemonicParsing="false" text="Regex-Info"/>
                         <MenuItem fx:id="about" mnemonicParsing="false" text="About"/>
                     </items>
                 </Menu>
@@ -59,6 +60,6 @@
                 </Tab>
             </tabs>
 
-        </TabPane>
+       </TabPane>
    </center>
 </BorderPane>
