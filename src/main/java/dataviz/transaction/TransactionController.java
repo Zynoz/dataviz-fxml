@@ -86,6 +86,10 @@ public class TransactionController implements Initializable {
         contentTable.getItems().setAll(entries);
     }
 
+    private void setupRedoView() {
+
+    }
+
     public void updateTableView() {
         contentTable.getItems().setAll(entries);
     }
@@ -127,5 +131,9 @@ public class TransactionController implements Initializable {
 
     public ObservableList<TableEntry> getEntries() {
         return entries;
+    }
+
+    public void addToRedoTable(SQLStatement sqlStatement) {
+
     }
 }
