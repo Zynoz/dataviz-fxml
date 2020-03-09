@@ -1,6 +1,7 @@
 package dataviz.base;
 
 import dataviz.Main;
+import dataviz.memory.MemoryController;
 import dataviz.transaction.TransactionController;
 import dataviz.util.SQLParser;
 import javafx.application.Platform;
@@ -39,6 +40,8 @@ public class BaseController implements Initializable {
         testInsert.setOnAction(event -> {
             TransactionController.getInstance().insertTestEntries();
             TransactionController.getInstance().updateTableView();
+            MemoryController.getInstance().insertTestEntries();
+            MemoryController.getInstance().updateTableView();
         });
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT").append("\n").append(SQLParser.INSERT_PATTERN.toString()).append("\n\n").append("UPDATE").append("\n").append(SQLParser.UPDATE_PATTERN.toString()).append("\n\n").append("DELETE").append("\n").append(SQLParser.DELETE_PATTERN.toString());
