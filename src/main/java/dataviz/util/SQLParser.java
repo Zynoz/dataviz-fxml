@@ -23,6 +23,8 @@ public class SQLParser {
     //                                                                            tableName1         id2
     public static final Pattern DELETE_PATTERN = Pattern.compile("delete from benutzer where (id) = (\\d{1,4});", Pattern.CASE_INSENSITIVE);
 
+    public static final Pattern COMMIT_PATTERN = Pattern.compile("commit;", Pattern.CASE_INSENSITIVE);
+
     private static final Logger log = LogManager.getLogger(SQLParser.class.getSimpleName());
 
 
@@ -31,6 +33,7 @@ public class SQLParser {
         final Matcher insertMatcher = INSERT_PATTERN.matcher(sql);
         final Matcher updateMatcher = UPDATE_PATTERN.matcher(sql);
         final Matcher deleteMatcher = DELETE_PATTERN.matcher(sql);
+        final Matcher commitMatcher = COMMIT_PATTERN.matcher(sql);
 
         if (insertMatcher.matches()) {
             return SQLType.INSERT;
@@ -38,7 +41,10 @@ public class SQLParser {
             return SQLType.UPDATE;
         } else if (deleteMatcher.matches()) {
             return SQLType.DELETE;
+        } else if (commitMatcher.matches()) {
+            return SQLType.COMMIT;
         } else {
+            log.error("Could not match SQL to pattern");
             return null;
         }
     }
@@ -50,6 +56,7 @@ public class SQLParser {
             String sql = sqlIterator.next();
             SQLType type = getType(sql);
             if (type == null) {
+                log.error("Invalid SQL Statement: " + sql);
                 throw new SQLException("Invalid SQL Statement!");
             }
             list.add(SQLPair.of(type, sql));
@@ -60,6 +67,7 @@ public class SQLParser {
     public static SQLPair<SQLType, String> getSQLFromSingleString(String sql) throws SQLException {
         SQLType type = getType(sql);
         if (type == null) {
+            log.error("Invalid SQL Statement: " + sql);
             throw new SQLException("Invalid SQL Statement!");
         } else {
             return SQLPair.of(type, sql);
@@ -106,10 +114,12 @@ public class SQLParser {
             List<TableEntry> entries = TransactionController.getInstance().getEntries();
             int id = Integer.parseInt(matcher.group(2));
             if (entries.stream().anyMatch(te -> te.getId() == id)) {
-                throw new SQLException("This id is already in use");
+                log.error("This id is already in use");
+                throw new SQLException("This id is already in use: " + id);
             }
             return new TableEntry(Long.parseLong(matcher.group(2)), matcher.group(3).replaceAll("'", ""), Double.parseDouble(matcher.group(4)), Double.parseDouble(matcher.group(6)));
         }
+        log.error("Invalid SQL: " + sql);
         throw new SQLException("Invalid SQL");
     }
 
@@ -128,11 +138,12 @@ public class SQLParser {
                 }
             }
             if (toDelete == null) {
+                log.error("Could not find entry to delete: " + id);
                 throw new SQLException("Could not find entry to delete");
             }
             return toDelete;
         }
-        log.info("Found no TableEntry to delete");
+        log.error("Invalid SQL: " + sql);
         throw new SQLException("Invalid SQL");
     }
 
@@ -144,7 +155,6 @@ public class SQLParser {
         if (matcher.matches()) {
             int id = Integer.parseInt(matcher.group(8));
             log.info("ID: " + id);
-
             TableEntry toUpdate = null;
             for (TableEntry te : entries) {
                 if (te.getId() == id) {
@@ -152,15 +162,16 @@ public class SQLParser {
                 }
             }
             if (toUpdate == null) {
-                throw new SQLException("Could not find entry to update!");
+                log.error("Could not find entry to update: " + id);
+                throw new SQLException("Could not find entry to update: " + id);
             }
             log.info("toUpdate: " + toUpdate);
-            log.info("tablecolumnname: " + matcher.group(1));
+            log.debug("tablecolumnname: " + matcher.group(1));
             TableColumn toChange = TableColumn.getTableColumn(matcher.group(1));
             log.info("toChange: " + toChange);
             if (toChange.equals(TableColumn.NAME)) {
                 String name = matcher.group(2).replaceAll("'", "");
-                log.info("Name: " + name);
+                log.debug("Name: " + name);
                 toUpdate.setName(name);
                 return toUpdate;
             } else if (toChange.equals(TableColumn.AMOUNT)) {
@@ -174,6 +185,7 @@ public class SQLParser {
                 return toUpdate;
             }
         }
-        throw new SQLException("Could not parse SQL!");
+        log.error("Could not parse SQL: " + sql);
+        throw new SQLException("Could not parse SQL: " + sql);
     }
 }

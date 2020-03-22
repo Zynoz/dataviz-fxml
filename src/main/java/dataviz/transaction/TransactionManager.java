@@ -23,6 +23,7 @@ public class TransactionManager {
     }
 
     public static synchronized TransactionManager getInstance() {
+        log.debug("initializing...");
         if (instance == null) {
             instance = new TransactionManager();
         }
@@ -31,20 +32,22 @@ public class TransactionManager {
 
     //todo implement
     public void executeStatement(String sql) throws SQLException {
+        List<SQLPair<SQLType, String>> sqlPairs = SQLParser.getSQLFromString(sql);
         if (currentTID == null && sql.equalsIgnoreCase("commit;")) {
+            log.error("No transaction open");
             throw new SQLException("No Transaction open");
         } else if (currentTID == null && !sql.equalsIgnoreCase("commit;")) {
             currentTID = new TransactionId();
-            log.debug("generated new TID: " + currentTID.gettId());
+            log.info("generated new TID: " + currentTID.gettId());
         } else if (sql.equalsIgnoreCase("commit;")) {
+            log.info("committed with TID: " + currentTID);
             currentTID = null;
             TransactionController.getInstance().updateUndoTableView();
-            log.info("committed");
             //todo commit logic
             return;
         }
+
         log.debug("using TID: " + currentTID);
-        List<SQLPair<SQLType, String>> sqlPairs = SQLParser.getSQLFromString(sql);
         for (SQLPair<SQLType, String> pair : sqlPairs) {
             if (pair.getType().equals(SQLType.INSERT)) {
                 TableEntry insert = SQLParser.getInsertData(pair.getSql());

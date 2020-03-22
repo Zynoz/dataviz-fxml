@@ -35,10 +35,7 @@ public class TransactionController implements Initializable {
     private TableColumn<UndoTableEntry, String> undoRIDCol, undoTIDCol, undoSQLCol;
 
     @FXML
-    private Tab undoTab;
-
-    @FXML
-    private TableView redoTableView;
+    private TableView<RedoTableEntry> redoTable;
 
     @FXML
     private TableView<TableEntry> contentTable;
@@ -66,7 +63,6 @@ public class TransactionController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-//        LoggingHelper.setupLogger(log);
         log.debug("initializing...");
         transactionController = this;
         tm = TransactionManager.getInstance();
@@ -89,9 +85,11 @@ public class TransactionController implements Initializable {
                     tm.executeStatement(selected.trim());
                     updateTableView();
                 } catch (SQLException e) {
+                    log.error(e.getMessage());
                     Main.alert(Alert.AlertType.ERROR, e.getMessage(), e.getClass().getSimpleName());
                 }
             } else {
+                log.error("No SQL Statement selected");
                 Main.alert(Alert.AlertType.WARNING, "No SQL Statement selected", "SQL Error");
             }
         });
@@ -100,6 +98,7 @@ public class TransactionController implements Initializable {
             try {
                 tm.executeStatement("commit;");
             } catch (SQLException e) {
+                log.error(e.getMessage());
                 Main.alert(Alert.AlertType.ERROR, e.getMessage(), e.getClass().getSimpleName());
             }
         });
@@ -173,6 +172,7 @@ public class TransactionController implements Initializable {
     }
 
     public void addToUndoLog(UndoTableEntry undoTableEntry) {
+        log.debug("added " + undoTableEntry + " to undo log");
         undoTableEntries.add(undoTableEntry);
     }
 }
