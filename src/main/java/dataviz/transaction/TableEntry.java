@@ -9,6 +9,8 @@ public class TableEntry {
     private double currentAmount;
     private double maxAmount;
 
+    private SQLStatement sqlStatement;
+
     public TableEntry() {
 
     }
@@ -52,6 +54,14 @@ public class TableEntry {
         this.maxAmount = maxAmount;
     }
 
+    public SQLStatement getSqlStatement() {
+        return sqlStatement;
+    }
+
+    public void setSqlStatement(SQLStatement sqlStatement) {
+        this.sqlStatement = sqlStatement;
+    }
+
     @Override
     public String toString() {
         return "TableEntry{" +
@@ -59,6 +69,7 @@ public class TableEntry {
                 ", name='" + name + '\'' +
                 ", currentAmount=" + currentAmount +
                 ", maxAmount=" + maxAmount +
+                ", sqlStatement=" + sqlStatement +
                 '}';
     }
 

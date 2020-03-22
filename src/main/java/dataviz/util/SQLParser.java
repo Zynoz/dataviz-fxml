@@ -5,9 +5,12 @@ import dataviz.transaction.TableEntry;
 import dataviz.transaction.TransactionController;
 import javafx.collections.ObservableList;
 import lombok.SneakyThrows;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.*;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +23,7 @@ public class SQLParser {
     //                                                                            tableName1         id2
     public static final Pattern DELETE_PATTERN = Pattern.compile("delete from benutzer where (id) = (\\d{1,4});", Pattern.CASE_INSENSITIVE);
 
-    private static final Logger LOGGER = Logger.getLogger(SQLParser.class.getSimpleName());
+    private static final Logger log = LogManager.getLogger(SQLParser.class.getSimpleName());
 
 
     public static SQLType getType(String sql) {
@@ -64,7 +67,6 @@ public class SQLParser {
     }
 
     public static List<SQLPair<SQLType, String>> getSQLFromString(String sql) throws SQLException {
-        LOGGER.info(sql);
         sql = sql.replaceAll("\\n", "");
         List<SQLPair<SQLType, String>> list = new ArrayList<>();
         if (sql.split(";").length > 1) {
@@ -75,7 +77,7 @@ public class SQLParser {
             for (String sqlStatement : sqlStatements) {
                 SQLType type = getType(sqlStatement.trim());
                 if (type == null) {
-                    LOGGER.severe("Invalid SQL Statement for SQL: " + sqlStatement);
+                    log.error("Invalid SQL Statement for SQL: " + sqlStatement);
                     throw new SQLException("Invalid SQL Statement for SQL: " + sqlStatement);
                 }
                 list.add(SQLPair.of(type, sqlStatement));
@@ -112,23 +114,26 @@ public class SQLParser {
     }
 
     //todo
-    public static TableEntry getDeleteData(String sql) {
+    public static TableEntry getDeleteData(String sql) throws SQLException {
         Matcher matcher = DELETE_PATTERN.matcher(sql);
         TableEntry toDelete = null;
         if (matcher.matches()) {
             int id = Integer.parseInt(matcher.group(2));
-            LOGGER.info("ID to delete: " + id);
+            log.info("ID to delete: " + id);
             ObservableList<TableEntry> entries = TransactionController.getInstance().getEntries();
             for (TableEntry next : entries) {
                 if (next.getId() == id) {
                     toDelete = next;
-                    LOGGER.info("Found TableEntry to delete");
+                    log.info("Found TableEntry to delete");
                 }
+            }
+            if (toDelete == null) {
+                throw new SQLException("Could not find entry to delete");
             }
             return toDelete;
         }
-        LOGGER.info("Found no TableEntry to delete");
-        return null;
+        log.info("Found no TableEntry to delete");
+        throw new SQLException("Invalid SQL");
     }
 
     @SneakyThrows
@@ -138,7 +143,7 @@ public class SQLParser {
         Matcher matcher = UPDATE_PATTERN.matcher(sql);
         if (matcher.matches()) {
             int id = Integer.parseInt(matcher.group(8));
-            LOGGER.info("ID: " + id);
+            log.info("ID: " + id);
 
             TableEntry toUpdate = null;
             for (TableEntry te : entries) {
@@ -149,13 +154,13 @@ public class SQLParser {
             if (toUpdate == null) {
                 throw new SQLException("Could not find entry to update!");
             }
-            LOGGER.info("toUpdate: " + toUpdate);
-            LOGGER.info("tablecolumnname: " + matcher.group(1));
+            log.info("toUpdate: " + toUpdate);
+            log.info("tablecolumnname: " + matcher.group(1));
             TableColumn toChange = TableColumn.getTableColumn(matcher.group(1));
-            LOGGER.info("toChange: " + toChange);
+            log.info("toChange: " + toChange);
             if (toChange.equals(TableColumn.NAME)) {
                 String name = matcher.group(2).replaceAll("'", "");
-                LOGGER.info("Name: " + name);
+                log.info("Name: " + name);
                 toUpdate.setName(name);
                 return toUpdate;
             } else if (toChange.equals(TableColumn.AMOUNT)) {
@@ -164,23 +169,11 @@ public class SQLParser {
                 return toUpdate;
             } else if (toChange.equals(TableColumn.MAXAMOUNT)) {
                 double maxamount = Double.parseDouble(matcher.group(2));
-                LOGGER.info("maxamount: " + maxamount);
+                log.info("maxamount: " + maxamount);
                 toUpdate.setMaxAmount(maxamount);
                 return toUpdate;
             }
         }
         throw new SQLException("Could not parse SQL!");
-    }
-
-    public static Map<String, String> convertInsertListToMap(List<String> insertList) {
-        Map<String, String> fieldValues = new HashMap<>();
-        fieldValues.put(insertList.get(0), insertList.get(3));
-        fieldValues.put(insertList.get(1), insertList.get(4));
-        fieldValues.put(insertList.get(2), insertList.get(5));
-        int half = insertList.size() / 2;
-        for (int i = 0; i < half; i++) {
-            fieldValues.put(insertList.get(i), insertList.get(i + half));
-        }
-        return fieldValues;
     }
 }
