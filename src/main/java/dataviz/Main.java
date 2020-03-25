@@ -25,7 +25,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/base_view.fxml"));
         primaryStage.setTitle("DataViz");
-        primaryStage.setScene(new Scene(root, 750, 600));
+        primaryStage.setScene(new Scene(root, 1280, 800));
 //        Button btn = TransactionController.getInstance().getGo1();
 //        KeyCombination kc = new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN);
 //        Mnemonic mn = new Mnemonic(btn, kc);

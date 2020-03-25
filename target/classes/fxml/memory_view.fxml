@@ -1,53 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.memory.MemoryController" fx:id="memoryController">
-    <children>
-        <TextArea fx:id="user1" layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" />
-        <TextArea fx:id="user2" layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User2&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="220.0" />
-        <TextArea fx:id="user3" layoutX="10.0" layoutY="219.0" prefHeight="130.0" prefWidth="200.0" promptText="Select" text="User3&#10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
-        <GridPane fx:id="gridPane1" gridLinesVisible="true" layoutX="4.0" layoutY="39.0" prefHeight="67.0" prefWidth="590.0" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-            <columnConstraints>
-                <ColumnConstraints fx:id="colConstraint1" maxWidth="296.93089294433594" minWidth="64.93218231201172" prefWidth="294.5715789794922" />
-                <ColumnConstraints fx:id="colConstraint2" hgrow="SOMETIMES" maxWidth="525.0678176879883" minWidth="10.0" prefWidth="295.4284210205078" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints fx:id="rowConstraint1" maxHeight="54.447349548339844" minHeight="10.0" prefHeight="49.728729248046875" vgrow="SOMETIMES" />
-                <RowConstraints fx:id="rowConstraint2" maxHeight="61.85425567626953" minHeight="10.0" prefHeight="50.057708740234375" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <ScrollBar fx:id="scrollBar1" orientation="VERTICAL" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
-                <Label fx:id="labelSGA" prefHeight="19.0" prefWidth="30.0" text="SGA">
-                    <GridPane.margin>
-                        <Insets fx:id="insetLeft1" left="20.0" top="-15.0" />
-                    </GridPane.margin>
-                </Label>
-            </children>
-        </GridPane>
-        <GridPane fx:id="gridPane2" gridLinesVisible="true" layoutX="-10.0" layoutY="78.0" prefHeight="90.0" prefWidth="600.0" AnchorPane.bottomAnchor="170.5" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
-            <columnConstraints>
-                <ColumnConstraints fx:id="colConstraint3" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints fx:id="colConstraint4" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints fx:id="rowConstraint3" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints fx:id="rowConstraint4" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <ScrollBar fx:id="scrollBar2" orientation="VERTICAL" prefHeight="85.0" prefWidth="17.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
-                <Label fx:id="labelHDD" prefHeight="19.0" prefWidth="28.0" text="HDD">
-                    <GridPane.margin>
-                        <Insets fx:id="insetLeft2" left="20.0" top="-25.0" />
-                    </GridPane.margin>
-                </Label>
-            </children>
-        </GridPane>
-    </children>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="memoryController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataviz.memory.MemoryController">
+   <children>
+      <GridPane hgap="30.0" layoutX="462.0" layoutY="307.0" prefHeight="90.0" prefWidth="685.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="455.0" minHeight="10.0" prefHeight="388.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="600.0" minHeight="10.0" prefHeight="96.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="600.0" minHeight="10.0" prefHeight="175.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="221.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox fillHeight="false" prefHeight="5.0" prefWidth="342.0" spacing="10.0" GridPane.rowIndex="3">
+               <children>
+                  <Button fx:id="go1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="↵">
+                     <HBox.margin>
+                        <Insets right="200.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox fillHeight="false" prefHeight="65.0" prefWidth="564.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Button fx:id="go2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="↵">
+                     <HBox.margin>
+                        <Insets right="200.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox fillHeight="false" prefHeight="37.0" prefWidth="390.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <Button fx:id="go3" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="↵">
+                     <HBox.margin>
+                        <Insets right="200.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </HBox>
+            <TextArea fx:id="tf1" minHeight="100.0" prefHeight="262.0" prefWidth="374.0" GridPane.rowIndex="2" />
+            <TextArea fx:id="tf2" minHeight="100.0" prefHeight="226.0" prefWidth="440.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextArea fx:id="tf3" minHeight="100.0" prefHeight="288.0" prefWidth="373.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TableView fx:id="sga" prefHeight="382.0" prefWidth="678.0">
+              <columns>
+                <TableColumn prefWidth="373.0" text="SGA" />
+              </columns>
+            </TableView>
+            <TableView fx:id="contentTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="375.0" GridPane.columnIndex="2">
+               <columns>
+                  <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="amountColumn" prefWidth="75.0" text="Amount" />
+                  <TableColumn fx:id="maxColumn" prefWidth="112.0" text="Max. Amount" />
+               </columns>
+            </TableView>
+            <TableView fx:id="hdd" prefHeight="382.0" prefWidth="678.0" GridPane.columnIndex="1">
+               <columns>
+                  <TableColumn prefWidth="373.0" text="HDD" />
+               </columns>
+            </TableView>
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>
