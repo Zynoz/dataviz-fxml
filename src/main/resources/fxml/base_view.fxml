@@ -10,8 +10,10 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem fx:id="textImport" mnemonicParsing="false" text="Import SQL"/>
+                        <MenuItem fx:id="sqlImport" mnemonicParsing="false" text="Import SQL"/>
                         <MenuItem fx:id="csvImport" mnemonicParsing="false" text="Import CSV"/>
+                        <MenuItem fx:id="sqlExport" mnemonicParsing="false" text="Export SQL"/>
+                        <MenuItem fx:id="csvExport" mnemonicParsing="false" text="Export CSV"/>
                         <MenuItem fx:id="close" mnemonicParsing="false" text="Close"/>
                     </items>
                 </Menu>

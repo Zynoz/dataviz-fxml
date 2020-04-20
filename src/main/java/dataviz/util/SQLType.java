@@ -4,5 +4,6 @@ public enum SQLType {
     INSERT,
     DELETE,
     UPDATE,
-    COMMIT
+    COMMIT,
+    ROLLBACK
 }

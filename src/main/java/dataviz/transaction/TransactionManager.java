@@ -73,6 +73,10 @@ public class TransactionManager {
                 undoTableEntry.settId(currentTID);
                 TransactionController.getInstance().updateTableView(update);
                 TransactionController.getInstance().addToUndoLog(undoTableEntry);
+            } else if (pair.getType().equals(SQLType.COMMIT)) {
+                UndoTableEntry undoTableEntry = new UndoTableEntry("", new CommitStatement());
+                undoTableEntry.settId(currentTID);
+                TransactionController.getInstance().addToUndoLog(undoTableEntry);
             }
         }
     }

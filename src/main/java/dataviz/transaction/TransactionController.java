@@ -24,10 +24,10 @@ public class TransactionController implements Initializable {
     @FXML
     public TableColumn<TableEntry, Long> idColumn;
 
-    private ObservableList<TableEntry> entries = FXCollections.observableArrayList();
+    private final ObservableList<TableEntry> entries = FXCollections.observableArrayList();
 
     private TransactionManager tm;
-    private ObservableList<UndoTableEntry> undoTableEntries = FXCollections.observableArrayList();
+    private final ObservableList<UndoTableEntry> undoTableEntries = FXCollections.observableArrayList();
     @FXML
     private TableView<UndoTableEntry> undoTable;
 
@@ -97,6 +97,7 @@ public class TransactionController implements Initializable {
         commit1.setOnAction(event -> {
             try {
                 tm.executeStatement("commit;");
+                updateUndoTableView();
             } catch (SQLException e) {
                 log.error(e.getMessage());
                 Main.alert(Alert.AlertType.ERROR, e.getMessage(), e.getClass().getSimpleName());
